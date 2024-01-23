@@ -20,6 +20,7 @@
 
 .t-table-container {
   overflow-x: hidden;
+  padding: 1px 0px;
 }
 
 .t-table-container .th-row-expander,

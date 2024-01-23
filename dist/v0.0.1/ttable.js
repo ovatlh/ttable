@@ -1,11 +1,14 @@
 var ttable=ttable||(function () {
   const _TABLE_DATA = {};
+  const _SEC_TO_RESIZE_EVENT = 0.3;
   let _show_Error_Message = true;
   let _show_Debug_Message = true;
 
   const temp_ttable_data = {
     id: "",
     isOverflow: false,
+    timeOutFunction: null,
+    oldWindowWidth: 0,
     tableOriginalDom: null,
     containerDom: null,
     containerClassList: [],
@@ -61,38 +64,54 @@ var ttable=ttable||(function () {
   function _update_class_overflow(id, currentStep = 1) {
     try {
       if(currentStep === 1) {
-        _TABLE_DATA[id].containerDom.classList.add("is-overflow");
+        window.requestAnimationFrame(() => {
+          _TABLE_DATA[id].containerDom.classList.remove("is-overflow");
+        });
+      }
+
+      if(currentStep === 2 && _TABLE_DATA[id].isOverflow) {
+        window.requestAnimationFrame(() => {
+          _TABLE_DATA[id].containerDom.classList.add("is-overflow");
+        });
       }
 
       _TABLE_DATA[id].table.thead.trList.forEach((item_tr, index_tr) => {
         item_tr.thList.forEach((item_th, index_th) => {
-          if(currentStep === 1) {
-            item_th.dom.classList.remove("is-overflow");
+          if(currentStep === 2 || currentStep === 3) {
+            window.requestAnimationFrame(() => {
+              item_th.dom.classList.remove("is-overflow");
+            });
           }
 
-          if(currentStep === 2 && item_th.isOverflow) {
-            item_th.dom.classList.add("is-overflow");
+          if(currentStep === 4 && item_th.isOverflow) {
+            window.requestAnimationFrame(() => {
+              item_th.dom.classList.add("is-overflow");
+            });
           }
         });
       });
 
       _TABLE_DATA[id].table.tbody.trList.forEach((item_tr, index_tr) => {
         item_tr.tdList.forEach((item_td, index_td) => {
-          if(currentStep === 1) {
-            item_td.dom.classList.remove("is-overflow");
+          if(currentStep === 2 || currentStep === 3) {
+            window.requestAnimationFrame(() => {
+              item_td.dom.classList.remove("is-overflow");
+            });
           }
 
-          if(currentStep === 2 && item_td.isOverflow) {
-            item_td.dom.classList.add("is-overflow");
+          if(currentStep === 4 && item_td.isOverflow) {
+            window.requestAnimationFrame(() => {
+              item_td.dom.classList.add("is-overflow");
+            });
           }
         });
       });
       
-      if(currentStep === 3) {
-        _TABLE_DATA[id].containerDom.classList.remove("is-overflow");
-      }
+      // if(currentStep === 3) {
+      //   _TABLE_DATA[id].containerDom.classList.remove("is-overflow");
+      // }
 
-      if(currentStep <= 3) {
+      if(currentStep <= 4) {
         currentStep += 1;
         window.requestAnimationFrame((e) => {
           // console.log({ id, currentStep, e });
@@ -100,7 +119,13 @@ var ttable=ttable||(function () {
         });
       } else {
         if(_TABLE_DATA[id].isOverflow) {
-          _TABLE_DATA[id].containerDom.classList.add("is-overflow");
+          window.requestAnimationFrame(() => {
+            _TABLE_DATA[id].containerDom.classList.add("is-overflow");
+          });
+        } else {
+          window.requestAnimationFrame(() => {
+            _TABLE_DATA[id].containerDom.classList.remove("is-overflow");
+          });
         }
       }
     } catch (error) {
@@ -112,8 +137,8 @@ var ttable=ttable||(function () {
 
   function _calc_overflow(id, currentStep = 1) {
     try {
-      if(currentStep === 2) {
-        let result_any_isOverflow = false;
+      let result_any_isOverflow = false;
+      if(currentStep === 1 || currentStep === 3) {
         const container_Rect = _TABLE_DATA[id].containerDom.getBoundingClientRect();
         _TABLE_DATA[id].table.thead.trList.forEach((item_tr, index_tr) => {
           item_tr.thList.forEach((item_th, index_th) => {
@@ -129,7 +154,10 @@ var ttable=ttable||(function () {
           });
         });
 
-        _TABLE_DATA[id].isOverflow = result_any_isOverflow;
+        if(currentStep === 1 || currentStep === 3) {
+          _TABLE_DATA[id].isOverflow = result_any_isOverflow;
+        }
+        console.log({ id, currentStep, result_any_isOverflow });
       }
 
       window.requestAnimationFrame((e) => {
@@ -148,8 +176,20 @@ var ttable=ttable||(function () {
       window.addEventListener("DOMContentLoaded", (e) => {
         _calc_overflow(id, 1);
       });
-      window.addEventListener("resize", (e) => {
-        _calc_overflow(id, 1);
+      window.addEventListener("resize", (event) => {
+        console.log({ resize: event });
+
+        clearTimeout(_TABLE_DATA[id].timeOutFunction);
+        _TABLE_DATA[id].timeOutFunction = null;
+
+        const _new_window_width = event.target.innerWidth;
+        if(_TABLE_DATA[id].oldWindowWidth != _new_window_width) {
+          _TABLE_DATA[id].oldWindowWidth = _new_window_width;
+
+          _TABLE_DATA[id].timeOutFunction = setTimeout(() => {
+            _calc_overflow(id, 1);
+          }, _SEC_TO_RESIZE_EVENT * 1000);
+        }
       });
     } catch (error) {
       if(_show_Error_Message) {
@@ -444,6 +484,8 @@ var ttable=ttable||(function () {
         _TABLE_DATA[id] = {
           id: id,
           isOverflow: false,
+          timeOutFunction: null,
+          oldWindowWidth: window.innerWidth,
           containerDom: table_DOM,
           containerClassList: containerClassList,
           table: {
