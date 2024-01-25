@@ -5,7 +5,6 @@
 .t-table-container .th-row-expander,
 .t-table-container .btn-col-expander,
 .t-table-container .th-col,
-/* .t-table-container .t-body, */
 .t-table-container .tr-status-rowsinbody,
 .t-table-container .tr-status-content,
 .t-table-container .t-body tr,
@@ -20,7 +19,7 @@
 
 .t-table-container {
   overflow-x: hidden;
-  padding: 1px 0px;
+  overflow-y: hidden;
 }
 
 .t-table-container .th-row-expander,
@@ -44,15 +43,8 @@
   cursor: pointer;
 }
 
-/* .t-table-container .t-table thead {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-} */
-
 .t-table-container .t-table tbody {
   position: relative;
-  /* z-index: 1; */
 }
 
 .t-table-container .tr-status-content {
@@ -78,4 +70,11 @@
 
 .t-table-container .td-expanded {
   word-break: break-all;
+}
+
+.t-table-container .table-expanded .th-expanded {
+  width: 50%;
+}
+.t-table-container .table-expanded .td-expanded {
+  width: 50%;
 }

@@ -162,8 +162,8 @@ async function fn_init() {
     icons: {
       expandRow: "⏩",
       closeRow: "⏫",
-      expandCol: "⏩",
-      closeCol: "⏫",
+      expandCol: "⭕",
+      closeCol: "⛔",
     },
     dataList: usuarioList,
     columnDefList: columnDefList1,
@@ -176,8 +176,8 @@ async function fn_init() {
     icons: {
       expandRow: "➕",
       closeRow: "➖",
-      expandCol: "➕",
-      closeCol: "➖",
+      expandCol: "⭕",
+      closeCol: "⛔",
     },
     dataList: [...usuarioList, ...usuarioList],
     columnDefList: columnDefList1,
@@ -186,3 +186,21 @@ async function fn_init() {
   });
 }
 fn_init();
+
+
+
+function fn_refresh_datalist_example01() {
+  ttable.fnRefreshDataList({ id: "example01", dataList: usuarioList });
+}
+
+function fn_refresh_datalist_nodata_example01() {
+  ttable.fnRefreshDataList({ id: "example01", dataList: [] });
+}
+
+function fn_status_loading_example01() {
+  ttable.fnSetStatus({ id: "example01", text: "loading" });
+}
+
+function fn_status_title_loading_example01() {
+  ttable.fnSetStatus({ id: "example01", text: "<h1>loading</h1>" });
+}

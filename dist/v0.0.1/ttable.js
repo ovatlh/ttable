@@ -16,6 +16,8 @@ var ttable=ttable||(function () {
       originalDom: null,
       dom: null,
       thead: {
+        btnColExpanderDom: null,
+        isExpanded: false,
         dom: null,
         trList: [
           {
@@ -37,6 +39,8 @@ var ttable=ttable||(function () {
           {
             index: 0,
             dom: null,
+            btnRowExpanderDom: null,
+            isExpanded: false,
             tdList: [
               {
                 index: 0,
@@ -60,6 +64,206 @@ var ttable=ttable||(function () {
     textStatus: "Status",
     statusRowsInBody: 4,
   };
+
+  function _refresh_all_btn_row_expander_dom_on_resize(id) {
+    try {
+      _TABLE_DATA[id].table.tbody.trList.forEach((item_tr, index_tr) => {
+        _remove_row_expanded(id, index_tr);
+        if(item_tr.isExpanded) {
+          _render_row_expanded(id, index_tr);
+        }
+      });
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
+
+  function _refresh_all_btn_row_expander_dom(id) {
+    try {
+      _TABLE_DATA[id].table.tbody.trList.forEach((item_tr, index_tr) => {
+        let btn_row_expander_HTML = _TABLE_DATA[id].icons.expandRow;
+        if(item_tr.isExpanded) {
+          btn_row_expander_HTML = _TABLE_DATA[id].icons.closeRow;
+          _render_row_expanded(id, index_tr);
+        } else {
+          _remove_row_expanded(id, index_tr);
+        }
+        _TABLE_DATA[id].table.tbody.trList[index_tr].btnRowExpanderDom.innerHTML = btn_row_expander_HTML;
+      });
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
+
+  function _refresh_btn_col_expander_dom(id) {
+    try {
+      let btn_col_expander_HTML = _TABLE_DATA[id].icons.expandCol;
+      if(_TABLE_DATA[id].table.thead.isExpanded) {
+        btn_col_expander_HTML = _TABLE_DATA[id].icons.closeCol;
+      }
+      _TABLE_DATA[id].table.thead.btnColExpanderDom.innerHTML = btn_col_expander_HTML;
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
+
+  function _toggle_all_row_is_expanded(id) {
+    try {
+      let result_table_is_expanded = _TABLE_DATA[id].table.thead.isExpanded;
+      _TABLE_DATA[id].table.tbody.trList.forEach((item_tr, index_tr) => {
+        let result_is_expanded = true;
+        if(result_table_is_expanded) {
+          result_is_expanded = false;
+        }
+        _TABLE_DATA[id].table.tbody.trList[index_tr].isExpanded = result_is_expanded;
+      });
+      _TABLE_DATA[id].table.thead.isExpanded = !result_table_is_expanded;
+      _refresh_all_btn_row_expander_dom(id);
+      _refresh_btn_col_expander_dom(id);
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
+
+  function _event_click_btn_col_expander(id) {
+    try {
+      _TABLE_DATA[id].table.thead.btnColExpanderDom.addEventListener("click", (event) => {
+        const table_id = event.srcElement.dataset.tableId;
+        _toggle_all_row_is_expanded(table_id);
+      });
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
+
+  function _refresh_btn_row_expander_dom(id, row_index, is_expanded) {
+    try {
+      let btn_row_expander_HTML = _TABLE_DATA[id].icons.expandRow;
+
+      if(is_expanded) {
+        btn_row_expander_HTML = _TABLE_DATA[id].icons.closeRow;
+      }
+      _TABLE_DATA[id].table.tbody.trList[row_index].btnRowExpanderDom.innerHTML = btn_row_expander_HTML;
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
+
+  function _remove_row_expanded(id, row_index) {
+    try {
+      const tr_Expanded_DOM = _TABLE_DATA[id].table.tbody.dom.querySelector(`tr.tr-row-expanded[data-row-index="${row_index}"]`);
+      if(tr_Expanded_DOM) {
+        tr_Expanded_DOM.remove();
+      }
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
+
+  function _render_row_expanded(id, row_index) {
+    try {
+      let total_col_count = 0;
+      let count_col_overflow = 0;
+      let col_overflow_list = [];
+      _TABLE_DATA[id].table.thead.trList.forEach((item_tr, index_tr) => {
+        col_overflow_list = item_tr.thList.filter((item) => item.isOverflow);
+        total_col_count += item_tr.thList.length;
+        count_col_overflow += col_overflow_list.length;
+      });
+      const total_col_to_span = ((total_col_count) - (count_col_overflow)) + 1;
+
+      const tr_Expanded_DOM = document.createElement("tr");
+      const result_row_index_even_odd = row_index % 2 == 0;
+      let result_class_even_odd = "odd";
+      if(result_row_index_even_odd) {
+        result_class_even_odd = "even";
+      }
+      const tr_classList = ["tr-row-expanded", result_class_even_odd];
+      tr_Expanded_DOM.classList.add(...tr_classList);
+      tr_Expanded_DOM.dataset.rowIndex = row_index;
+      const col_overflow_list_HTML = col_overflow_list.reduce((result, current_th, index_th) => {
+        const temp_tr_HTML = `
+          <tr>
+            <td class="th-expanded">${current_th.dom.innerHTML}</td>
+            <td class="td-expanded">${_TABLE_DATA[id].table.tbody.trList[row_index].tdList[index_th].dom.innerHTML}</td>
+          </tr>
+        `;
+
+        result += temp_tr_HTML;
+
+        return result;
+      }, "");
+
+      const tr_expanded_HTML = `
+      <td class="td-row-expanded" colspan="${total_col_to_span}">
+        <table class="table-expanded">
+          <tbody>
+            ${col_overflow_list_HTML}
+          </tbody>
+        </table>
+      </td>
+      `;
+      tr_Expanded_DOM.innerHTML = tr_expanded_HTML;
+      if(count_col_overflow > 0) {
+        _TABLE_DATA[id].table.tbody.trList[row_index].dom.insertAdjacentElement("afterend", tr_Expanded_DOM);
+      }
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
+
+  function _toggle_row_is_expanded(id, row_index) {
+    try {
+      const isExpanded = !_TABLE_DATA[id].table.tbody.trList[row_index].isExpanded;
+      _TABLE_DATA[id].table.tbody.trList[row_index].isExpanded = isExpanded;
+
+      const tr_is_expanded_List = _TABLE_DATA[id].table.tbody.trList.filter((item) => item.isExpanded);
+      const is_any_tr_expanded = tr_is_expanded_List.length > 0;
+      _TABLE_DATA[id].table.thead.isExpanded = is_any_tr_expanded;
+      _refresh_btn_row_expander_dom(id, row_index, isExpanded);
+      if(isExpanded) {
+        _render_row_expanded(id, row_index);
+      } else {
+        _remove_row_expanded(id, row_index);
+      }
+      _refresh_btn_col_expander_dom(id);
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
+
+  function _event_click_btn_row_expander(id) {
+    try {
+      _TABLE_DATA[id].table.tbody.trList.forEach((item_tr, index_tr) => {
+        item_tr.btnRowExpanderDom.addEventListener("click", (event) => {
+          const row_index = event.srcElement.dataset.rowIndex;
+          _toggle_row_is_expanded(id, row_index);
+        });
+      });
+    } catch (error) {
+      if(_show_Error_Message) {
+        console.error(error);
+      }
+    }
+  }
 
   function _update_class_overflow(id, currentStep = 1) {
     try {
@@ -106,15 +310,10 @@ var ttable=ttable||(function () {
           }
         });
       });
-      
-      // if(currentStep === 3) {
-      //   _TABLE_DATA[id].containerDom.classList.remove("is-overflow");
-      // }
 
       if(currentStep <= 4) {
         currentStep += 1;
         window.requestAnimationFrame((e) => {
-          // console.log({ id, currentStep, e });
           _calc_overflow(id, currentStep);
         });
       } else {
@@ -127,6 +326,8 @@ var ttable=ttable||(function () {
             _TABLE_DATA[id].containerDom.classList.remove("is-overflow");
           });
         }
+
+        _refresh_all_btn_row_expander_dom_on_resize(id);
       }
     } catch (error) {
       if(_show_Error_Message) {
@@ -157,11 +358,9 @@ var ttable=ttable||(function () {
         if(currentStep === 1 || currentStep === 3) {
           _TABLE_DATA[id].isOverflow = result_any_isOverflow;
         }
-        console.log({ id, currentStep, result_any_isOverflow });
       }
 
       window.requestAnimationFrame((e) => {
-        // console.log({ id, currentStep, e });
         _update_class_overflow(id, currentStep);
       });
     } catch (error) {
@@ -177,8 +376,6 @@ var ttable=ttable||(function () {
         _calc_overflow(id, 1);
       });
       window.addEventListener("resize", (event) => {
-        console.log({ resize: event });
-
         clearTimeout(_TABLE_DATA[id].timeOutFunction);
         _TABLE_DATA[id].timeOutFunction = null;
 
@@ -201,6 +398,8 @@ var ttable=ttable||(function () {
   function _refresh_thead_tbody_reference(id) {
     try {
       const thead_tr_list = _TABLE_DATA[id].table.thead.dom.querySelectorAll("tr");
+      const btn_col_expander_DOM = _TABLE_DATA[id].table.thead.dom.querySelector(".btn-col-expander");
+      _TABLE_DATA[id].table.thead.btnColExpanderDom = btn_col_expander_DOM;
       const result_thead_tr_list = Array.from(thead_tr_list).map((item_tr, index_tr) => {
         const th_list = item_tr.querySelectorAll("th.th-col");
         const result_th_list = Array.from(th_list).map((item_th, index_th) => {
@@ -225,6 +424,7 @@ var ttable=ttable||(function () {
       if(_TABLE_DATA[id].dataList.length > 0) {
         const tbody_tr_list_DOM = _TABLE_DATA[id].table.tbody.dom.querySelectorAll("tr");
         result_tbody_tr_list = Array.from(tbody_tr_list_DOM).map((item_tr, index_tr) => {
+          const btn_row_expander_DOM = item_tr.querySelector(".btn-row-expander");
           const td_list = item_tr.querySelectorAll("td.td-row");
           const result_td_list = Array.from(td_list).map((item_td, index_td) => {
             const temp_td_obj = {
@@ -239,6 +439,8 @@ var ttable=ttable||(function () {
             index: index_tr,
             dom: item_tr,
             tdList: result_td_list,
+            btnRowExpanderDom: btn_row_expander_DOM,
+            isExpanded: false,
           };
 
           return temp_tr_obj;
@@ -247,6 +449,8 @@ var ttable=ttable||(function () {
 
       _TABLE_DATA[id].table.thead.trList = result_thead_tr_list;
       _TABLE_DATA[id].table.tbody.trList = result_tbody_tr_list;
+
+      _event_click_btn_row_expander(id);
     } catch (error) {
       if(_show_Error_Message) {
         console.error(error);
@@ -304,7 +508,7 @@ var ttable=ttable||(function () {
       const row_list_HTML = _TABLE_DATA[id].dataList.reduce((result_row, current_row, index_row) => {
         const td_row_expander_HTML = `
           <td class="td-row-expander">
-            <button class="btn-row-expander">${_TABLE_DATA[id].icons.expandRow}</button>
+            <button class="btn-row-expander" data-row-index="${index_row}">${_TABLE_DATA[id].icons.expandRow}</button>
           </td>
         `;
 
@@ -387,7 +591,7 @@ var ttable=ttable||(function () {
       html = `
         <tr>
           <th class="th-row-expander" style="width: 1%;">
-            <button class="btn-col-expander">⭕</button>
+            <button class="btn-col-expander" data-table-id="${id}">${_TABLE_DATA[id].icons.expandCol}</button>
           </th>
           ${th_list_HTML}
         </tr>
@@ -492,6 +696,8 @@ var ttable=ttable||(function () {
             originalDom: table_DOM.cloneNode(true),
             dom: null,
             thead: {
+              btnColExpanderDom: null,
+              isExpanded: false,
               dom: null,
               trList: [],
             },
@@ -529,7 +735,14 @@ var ttable=ttable||(function () {
       }
 
       _TABLE_DATA[id].table.tbody.dom.innerHTML = tbody_HTML;
+
+      _TABLE_DATA[id].table.thead.isExpanded = false;
+
+      _refresh_btn_col_expander_dom(id);
+
       _refresh_thead_tbody_reference(id);
+
+      _calc_overflow(id);
     } catch (error) {
       if(_show_Error_Message) {
         console.error(error);
@@ -579,6 +792,8 @@ var ttable=ttable||(function () {
       _render_dom_on_page(id);
 
       _refresh_thead_tbody_reference(id);
+      
+      _event_click_btn_col_expander(id);
 
       _event_resize(id);
 
