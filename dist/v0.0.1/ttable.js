@@ -90,7 +90,9 @@ var ttable=ttable||(function () {
         } else {
           _remove_row_expanded(id, index_tr);
         }
-        _TABLE_DATA[id].table.tbody.trList[index_tr].btnRowExpanderDom.innerHTML = btn_row_expander_HTML;
+        if(_TABLE_DATA[id].table.tbody.trList[index_tr].btnRowExpanderDom) {
+          _TABLE_DATA[id].table.tbody.trList[index_tr].btnRowExpanderDom.innerHTML = btn_row_expander_HTML;
+        }
       });
     } catch (error) {
       if(_show_Error_Message) {
@@ -253,10 +255,12 @@ var ttable=ttable||(function () {
   function _event_click_btn_row_expander(id) {
     try {
       _TABLE_DATA[id].table.tbody.trList.forEach((item_tr, index_tr) => {
-        item_tr.btnRowExpanderDom.addEventListener("click", (event) => {
-          const row_index = event.srcElement.dataset.rowIndex;
-          _toggle_row_is_expanded(id, row_index);
-        });
+        if(item_tr.btnRowExpanderDom) {
+          item_tr.btnRowExpanderDom.addEventListener("click", (event) => {
+            const row_index = event.srcElement.dataset.rowIndex;
+            _toggle_row_is_expanded(id, row_index);
+          });
+        }
       });
     } catch (error) {
       if(_show_Error_Message) {
@@ -284,13 +288,18 @@ var ttable=ttable||(function () {
           if(currentStep === 2 || currentStep === 3) {
             window.requestAnimationFrame(() => {
               item_th.dom.classList.remove("is-overflow");
+              item_th.dom.classList.remove("is-normal");
             });
           }
 
-          if(currentStep === 4 && item_th.isOverflow) {
-            window.requestAnimationFrame(() => {
-              item_th.dom.classList.add("is-overflow");
-            });
+          if(currentStep === 4) {
+            if(item_th.isOverflow) {
+              window.requestAnimationFrame(() => {
+                item_th.dom.classList.add("is-overflow");
+              });
+            } else {
+              item_th.dom.classList.add("is-normal");
+            }
           }
         });
       });
@@ -300,13 +309,18 @@ var ttable=ttable||(function () {
           if(currentStep === 2 || currentStep === 3) {
             window.requestAnimationFrame(() => {
               item_td.dom.classList.remove("is-overflow");
+              item_td.dom.classList.remove("is-normal");
             });
           }
 
-          if(currentStep === 4 && item_td.isOverflow) {
-            window.requestAnimationFrame(() => {
-              item_td.dom.classList.add("is-overflow");
-            });
+          if(currentStep === 4) {
+            if(item_td.isOverflow) {
+              window.requestAnimationFrame(() => {
+                item_td.dom.classList.add("is-overflow");
+              });
+            } else {
+              item_td.dom.classList.add("is-normal");
+            }
           }
         });
       });

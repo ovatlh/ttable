@@ -26,7 +26,7 @@ async function _loadUsuarioList() {
 const columnDefList1 = [
   {
     th: "#",
-    thClassList: ["col-01-th"],
+    thClassList: ["col-01-th", "custom-col-th"],
     width: "1%",
     minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
@@ -34,106 +34,106 @@ const columnDefList1 = [
       const res = `${index_row + 1}`;
       return res;
     },
-    tdClassList: ["col-01-td"],
+    tdClassList: ["col-01-td", "custom-col-td"],
   },
   {
     th: "🔅 Tiempo",
-    thClassList: ["col-02-th"],
+    thClassList: ["col-02-th", "custom-col-th"],
     // width: "1%",
     // minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
       const res = `[${index_row}|${index_col}] ${item.name}`;
       return res;
     },
-    tdClassList: ["col-02-td"],
+    tdClassList: ["col-02-td", "custom-col-td"],
   },
   {
     th: "💫 Opciones",
-    thClassList: ["col-03-th"],
+    thClassList: ["col-03-th", "custom-col-th"],
     // width: "1%",
     // minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
       const res = `[${index_row}|${index_col}] ${item.website}`;
       return res;
     },
-    tdClassList: ["col-03-td"],
+    tdClassList: ["col-03-td", "custom-col-td"],
   },
   {
     th: "❌ Errores",
-    thClassList: ["col-04-th"],
+    thClassList: ["col-04-th", "custom-col-th"],
     // width: "1%",
     // minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
       const res = `[${index_row}|${index_col}] ${item.phone}`;
       return res;
     },
-    tdClassList: ["col-04-td"],
+    tdClassList: ["col-04-td", "custom-col-td"],
   },
   {
     th: "💢 Columna 1",
-    thClassList: ["col-05-th"],
+    thClassList: ["col-05-th", "custom-col-th"],
     // width: "1%",
     // minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
       const res = `[${index_row}|${index_col}] ${item.company.name}`;
       return res;
     },
-    tdClassList: ["col-05-td"],
+    tdClassList: ["col-05-td", "custom-col-td"],
   },
   {
     th: "💢 Columna 2",
-    thClassList: ["col-06-th"],
+    thClassList: ["col-06-th", "custom-col-th"],
     // width: "1%",
     // minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
       const res = `[${index_row}|${index_col}] ${item.id}`;
       return res;
     },
-    tdClassList: ["col-06-td"],
+    tdClassList: ["col-06-td", "custom-col-td"],
   },
   {
     th: "💢 Columna 3",
-    thClassList: ["col-07-th"],
+    thClassList: ["col-07-th", "custom-col-th"],
     // width: "1%",
     // minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
       const res = `[${index_row}|${index_col}] ${item.username}`;
       return res;
     },
-    tdClassList: ["col-07-td"],
+    tdClassList: ["col-07-td", "custom-col-td"],
   },
   {
     th: "💢 Columna 4",
-    thClassList: ["col-08-th"],
+    thClassList: ["col-08-th", "custom-col-th"],
     // width: "1%",
     // minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
       const res = `[${index_row}|${index_col}] ${item.name}`;
       return res;
     },
-    tdClassList: ["col-08-td"],
+    tdClassList: ["col-08-td", "custom-col-td"],
   },
   {
     th: "💢 Columna 5",
-    thClassList: ["col-09-th"],
+    thClassList: ["col-09-th", "custom-col-th"],
     // width: "1%",
     // minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
       const res = `[${index_row}|${index_col}] ${item.website}`;
       return res;
     },
-    tdClassList: ["col-09-td"],
+    tdClassList: ["col-09-td", "custom-col-td"],
   },
   {
     th: "👁‍🗨 Acciones",
-    thClassList: ["col-10-th"],
+    thClassList: ["col-10-th", "custom-col-th"],
     // width: "1%",
     // minWidth: "1%",
     tdRender: function (item, index_row, index_col) {
       const res = `[${index_row}|${index_col}] ${item.phone}`;
       return res;
     },
-    tdClassList: ["col-10-td"],
+    tdClassList: ["col-10-td", "custom-col-td"],
   },
 ];
 let usuarioList = [];
@@ -165,9 +165,9 @@ async function fn_init() {
       expandCol: "⭕",
       closeCol: "⛔",
     },
-    dataList: usuarioList,
+    dataList: [],
     columnDefList: columnDefList1,
-    textNoData: "No data - 02",
+    textNoData: "<h1>Sin información</h1>",
     statusRowsInBody: 6,
   });
   ttable.fnInit({
@@ -179,11 +179,43 @@ async function fn_init() {
       expandCol: "⭕",
       closeCol: "⛔",
     },
-    dataList: [...usuarioList, ...usuarioList],
+    dataList: usuarioList,
     columnDefList: columnDefList1,
     textNoData: "No data - 03",
     statusRowsInBody: 8,
   });
+
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando.</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando..</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando.</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando..</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Por favor espere</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando.</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando..</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Estamos por terminar</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando.</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Cargando..</h1>" });
+  await _asyncSleepPromise(1);
+  ttable.fnSetStatus({ id: "example02", text: "<h1>Listo ✅</h1>" });
+  await _asyncSleepPromise(3);
+  ttable.fnRefreshDataList({ id: "example02", dataList: usuarioList });
 }
 fn_init();
 
