@@ -1,7 +1,7 @@
 {
     "name": "ttable",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "table library",
-    "main": "dist/v0.0.1/ttable.js",
+    "main": "dist/v0.1.0/ttable.js",
     "author": "@ovatlh"
 }

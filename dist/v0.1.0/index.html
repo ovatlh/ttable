@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ttable - v0.1.0</title>
+
+    <link rel="stylesheet" href="ttable.css" />
+    <link rel="stylesheet" href="index.css" />
+
+    <script src="ttable.js"></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <!-- <div class="t-table-container">
+      <table class="t-table">
+        <thead>
+          <tr>
+            <th class="th-row-expander">
+              <button class="btn-col-expander">⭕</button>
+            </th>
+            <th>#</th>
+            <th>🔅 Tiempo</th>
+            <th>💫 Opciones</th>
+            <th>❌ Errores</th>
+            <th>💢 Columna 1</th>
+            <th>💢 Columna 2</th>
+            <th>💢 Columna 3</th>
+            <th class="is-overflow">💢 Columna 4</th>
+            <th class="is-overflow">💢 Columna 5</th>
+            <th class="is-overflow">👁‍🗨 Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-row-expander">
+              <button class="btn-row-expander">⛔</button>
+            </td>
+            <td>1</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet.</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
+            <td class="is-overflow">Dato</td>
+            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
+            <td class="is-overflow">
+              <button>💠</button>
+            </td>
+          </tr>
+
+          <tr class="tr-row-expanded">
+            <td class="td-row-expanded" colspan="8">
+              <table class="table-expanded">
+                <tbody>
+                  <tr>
+                    <td class="th-expanded">💢 Columna 4</td>
+                    <td class="td-expanded">Dato</td>
+                  </tr>
+                  <tr>
+                    <td class="th-expanded">💢 Columna 5</td>
+                    <td class="td-expanded">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
+                  </tr>
+                  <tr>
+                    <td class="th-expanded">👁‍🗨 Acciones</td>
+                    <td class="td-expanded">
+                      <button>💠</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="td-row-expander">
+              <button class="btn-row-expander">⭕</button>
+            </td>
+            <td>2</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet.</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
+            <td class="is-overflow">Dato</td>
+            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
+            <td class="is-overflow">
+              <button>💠</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="td-row-expander">
+              <button class="btn-row-expander">⭕</button>
+            </td>
+            <td>3</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet.</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
+            <td class="is-overflow">Dato</td>
+            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
+            <td class="is-overflow">
+              <button>💠</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="td-row-expander">
+              <button class="btn-row-expander">⭕</button>
+            </td>
+            <td>4</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet.</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
+            <td class="is-overflow">Dato</td>
+            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
+            <td class="is-overflow">
+              <button>💠</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="td-row-expander">
+              <button class="btn-row-expander">⭕</button>
+            </td>
+            <td>5</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet.</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
+            <td>Dato</td>
+            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
+            <td class="is-overflow">Dato</td>
+            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
+            <td class="is-overflow">
+              <button>💠</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+
+    <table class="example01 example01-2 example01-3" id="example01"></table>
+
+    <button type="button" onclick="fn_refresh_datalist_example01();">example01: refresh dataList</button>
+    <button type="button" onclick="fn_refresh_datalist_nodata_example01();">example01: refresh dataList [no data]</button>
+    <button type="button" onclick="fn_status_loading_example01();">example01: status "loading"</button>
+    <button type="button" onclick="fn_status_title_loading_example01();">example01: status "loading" h1</button>
+
+    <table class="example02 example02-2 example02-3" id="example02"></table>
+
+    <table class="example03 example03-2 example03-3" id="example03"></table>
+
+    <a href="index.css" target="_blank">index: css</a>
+    <a href="index.js" target="_blank">index: js</a>
+    <a href="index.html" target="_blank">index: html</a>
+
+    <h4>log</h4>
+    <div id="log"></div>
+  </body>
+</html>
