@@ -201,7 +201,7 @@ var ttable=ttable||(function () {
         const temp_tr_HTML = `
           <tr>
             <td class="th-expanded">${current_th.dom.innerHTML}</td>
-            <td class="td-expanded">${_TABLE_DATA[id].table.tbody.trList[row_index].tdList[index_th].dom.innerHTML}</td>
+            <td class="td-expanded">${_TABLE_DATA[id].table.tbody.trList[row_index].tdList[current_th.index].dom.innerHTML}</td>
           </tr>
         `;
 
