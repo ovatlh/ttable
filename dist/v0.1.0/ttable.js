@@ -528,6 +528,9 @@ var ttable=ttable||(function () {
 
         const td_list_HTML = _TABLE_DATA[id].columnDefList.reduce((result_col, current_col, index_col) => {
           const render_HTML = current_col.tdRender(current_row, index_row, index_col);
+          if(!current_col.tdClassList) {
+            current_col.tdClassList = [];
+          }
           const td_classList = ["td-row", ...current_col.tdClassList];
           const result_td_classList = td_classList.join(" ");
           const td_HTML = `
