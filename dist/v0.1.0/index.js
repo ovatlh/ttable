@@ -215,18 +215,18 @@ async function fn_init() {
   await _asyncSleepPromise(1);
   ttable.fnSetStatus({ id: "example02", text: "<h1>Listo ✅</h1>" });
   await _asyncSleepPromise(3);
-  ttable.fnRefreshDataList({ id: "example02", dataList: usuarioList });
+  ttable.fnUpdate({ id: "example02", dataList: usuarioList });
 }
 fn_init();
 
 
 
 function fn_refresh_datalist_example01() {
-  ttable.fnRefreshDataList({ id: "example01", dataList: usuarioList });
+  ttable.fnUpdate({ id: "example01", dataList: usuarioList });
 }
 
 function fn_refresh_datalist_nodata_example01() {
-  ttable.fnRefreshDataList({ id: "example01", dataList: [] });
+  ttable.fnUpdate({ id: "example01", dataList: [] });
 }
 
 function fn_status_loading_example01() {

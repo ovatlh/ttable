@@ -737,12 +737,19 @@ var ttable=ttable||(function () {
     }
   }
 
-  function fnRefreshDataList({
+  function fnUpdate({
     id = "",
-    dataList = [],
+    dataList = null,
+    statusRowsInBody = null,
   } = {}) {
     try {
-      _TABLE_DATA[id].dataList = dataList;
+      if(dataList && dataList != null && dataList != undefined) {
+        _TABLE_DATA[id].dataList = dataList;
+      }
+
+      if(statusRowsInBody && statusRowsInBody != null && statusRowsInBody != undefined) {
+        _TABLE_DATA[id].statusRowsInBody = statusRowsInBody;
+      }
 
       let tbody_HTML = "";
       if(_TABLE_DATA[id].dataList.length > 0) {
@@ -851,6 +858,6 @@ var ttable=ttable||(function () {
     fnConfig,
     fnInit,
     fnSetStatus,
-    fnRefreshDataList,
+    fnUpdate,
   }
 })();
