@@ -69,7 +69,7 @@
 
         <code>
           <div>
-            ttable.<i>Metodo(objeto_con_parametros);</i> // <- Objeto global con funcionalidad
+            ttable.<i>Metodo(objeto_con_parámetros);</i> // <- Objeto global con funcionalidad
           </div>
         </code>
       </section>
@@ -86,6 +86,7 @@
               <p>Este método recibe los parámetros para inicializar la tabla</p>
               <p>Ejemplo de parámetros:</p>
 <pre>
+
 {
   <strong>id</strong>: "example03",
   <strong>containerClassList</strong>: ["example03"],
@@ -102,14 +103,13 @@
 }
 
 </pre>
-
-              <p>Parametros:</p>
+              <p>Parámetros:</p>
               <ul>
                 <li>
                   <h4>id: string</h4>
 
                   <section>
-                    <p>Este parámetro es el ID de la etiqueta &lt;table id="tu-id"/&gt;</p>
+                    <p>Este parámetro es el ID de la etiqueta &lt;table id="<strong>tu-id</strong>"/&gt;</p>
                   </section>
                 </li>
 
@@ -128,7 +128,7 @@
                   <section>
                     <p>Aquí se recibe un objeto con los 4 iconos que se mostraran en los botones para expandir y contraer los renglones con las columnas ocultas</p>
                     <p>La estructura de este objeto es la siguiente:</p>
-                    <pre>
+<pre>
 
 {
   <strong>expandRow</strong>: "⭕",
@@ -158,7 +158,8 @@
                   <section>
                     <p>En este parámetro se recibe un arreglo con las definiciones para cada columna que tendrá la tabla</p>
                     <p>Estructura de los objetos para definir columnas:</p>
-                    <pre>
+<pre>
+
 {
   // Obligatorios
   <strong>th</strong>: "Columna 01",
@@ -173,7 +174,7 @@
   <strong>tdClassList</strong>: ["col-01-td"],
 }
 
-                    </pre>
+</pre>
                   </section>
                 </li>
 
@@ -200,7 +201,41 @@
             <h3>fnSetStatus</h3>
 
             <section>
+              <p>Este método recibe los parámetros para cambiar el <i>estatus</i> de la tabla</p>
+              <p>Ejemplo de parámetros:</p>
+<pre>
 
+{ 
+  id: "example02", 
+  text: `
+    &lt;div&gt;
+      &lt;h1&gt;Otro estatus&lt;/h1&gt;
+      &lt;h3&gt;con diferente contenido&lt;/h3&gt;
+      &lt;p&gt;texto&lt;/p&gt;
+    &lt;/div&gt;
+  ` 
+}
+
+</pre>
+
+              <p>Parámetros:</p>
+              <ul>
+                <li>
+                  <h4>id: string</h4>
+
+                  <section>
+                    <p>Este parámetro es el ID de la etiqueta &lt;table id="<strong>tu-id</strong>"/&gt;</p>
+                  </section>
+                </li>
+
+                <li>
+                  <h4>text: string</h4>
+
+                  <section>
+                    <p>Contenido que se mostrara en el <i>estatus</i></p>
+                  </section>
+                </li>
+              </ul>
             </section>
           </li>
 
@@ -208,7 +243,58 @@
             <h3>fnUpdate</h3>
 
             <section>
+              <p>Con este método puedes actualizar la lista de objetos que se muestran en la tabla</p>
+              <p>Ejemplo de parámetros:</p>
+<pre>
 
+// 01: Puedes asignar un arreglo vacío y se mostrará el <i>estatus</i> de <i>"textNoData"</i>
+{ 
+  id: "example03", 
+  dataList: []
+}
+
+// 02: Puedes cambiar el numero de renglones que se utilizan para mostrar
+// el <i>estatus</i> de la tabla
+{
+  id: "example03",
+  statusRowsInBody: 3
+}
+
+// 03: Los objetos del arreglo que se asigna en <i>"dataList"</i> 
+// deben de tener las propiedades que se utilizan de <i>"item"</i> en <i>"tdRender"</i> desde <i>"columnDefList"</i>
+{
+  id: "example03",
+  dataList: usuarioList,
+}
+
+</pre>
+              <p>Parámetros:</p>
+              <ul>
+                <li>
+                  <h4>id: string</h4>
+
+                  <section>
+                    <p>Este parámetro es el ID de la etiqueta &lt;table id="<strong>tu-id</strong>"/&gt;</p>
+                  </section>
+                </li>
+
+                <li>
+                  <h4>dataList: array[object]</h4>
+
+                  <section>
+                    <p>Datos nuevos que quieres mostrar en la tabla</p>
+                    <p>También puedes pasar un arreglo vacío y mostrará el contenido de <i>"textNoData"</i></p>
+                  </section>
+                </li>
+
+                <li>
+                  <h4>statusRowsInBody: number</h4>
+
+                  <section>
+                    <p>Aquí puedes cambiar el número de renglones que se utilizan para mostrar el contenido de <i>"fnSetStatus()"</i></p>
+                  </section>
+                </li>
+              </ul>
             </section>
           </li>
         </ul>
