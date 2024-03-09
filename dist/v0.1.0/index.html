@@ -12,155 +12,190 @@
     <script src="index.js" defer></script>
   </head>
   <body>
-    <!-- <div class="t-table-container">
-      <table class="t-table">
-        <thead>
-          <tr>
-            <th class="th-row-expander">
-              <button class="btn-col-expander">⭕</button>
-            </th>
-            <th>#</th>
-            <th>🔅 Tiempo</th>
-            <th>💫 Opciones</th>
-            <th>❌ Errores</th>
-            <th>💢 Columna 1</th>
-            <th>💢 Columna 2</th>
-            <th>💢 Columna 3</th>
-            <th class="is-overflow">💢 Columna 4</th>
-            <th class="is-overflow">💢 Columna 5</th>
-            <th class="is-overflow">👁‍🗨 Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-row-expander">
-              <button class="btn-row-expander">⛔</button>
-            </td>
-            <td>1</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet.</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
-            <td class="is-overflow">Dato</td>
-            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
-            <td class="is-overflow">
-              <button>💠</button>
-            </td>
-          </tr>
+    <section>
+      <a class="a-title" href="#ttable">
+        <h1 id="ttable"># ttable - 0.1.0</h1>
+      </a>
+      <p>Mini libreria de javascript para crear tablas responsivas.</p>
+      <p>Cuando una columna se sale de la pantalla, esta se agrega en un nuevo renglon al dar clic en boton para expandir columnas ocultas.</p>
+      <p>Un extra agregado fue, el mostrar un contenido central para mostrar información o lo que se te ocurra.</p>
+      <p>Para los ejemplos se utilizo la api <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a></p>
+      <br>
+      <p>Intenta cambiar el ancho de esta ventana para ver como se comportan las tablas</p>
+    </section>
 
-          <tr class="tr-row-expanded">
-            <td class="td-row-expanded" colspan="8">
-              <table class="table-expanded">
-                <tbody>
-                  <tr>
-                    <td class="th-expanded">💢 Columna 4</td>
-                    <td class="td-expanded">Dato</td>
-                  </tr>
-                  <tr>
-                    <td class="th-expanded">💢 Columna 5</td>
-                    <td class="td-expanded">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
-                  </tr>
-                  <tr>
-                    <td class="th-expanded">👁‍🗨 Acciones</td>
-                    <td class="td-expanded">
-                      <button>💠</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
+    <section>
+      <a class="a-title" href="#ejemplo01">
+        <h2 id="ejemplo01"># Ejemplo base</h2>
+      </a>
+      <p>En este ejemplo podemos observar la estrucura de la tabla y sus diferentes contenidos.</p>
 
-          <tr>
-            <td class="td-row-expander">
-              <button class="btn-row-expander">⭕</button>
-            </td>
-            <td>2</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet.</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
-            <td class="is-overflow">Dato</td>
-            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
-            <td class="is-overflow">
-              <button>💠</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="td-row-expander">
-              <button class="btn-row-expander">⭕</button>
-            </td>
-            <td>3</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet.</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
-            <td class="is-overflow">Dato</td>
-            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
-            <td class="is-overflow">
-              <button>💠</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="td-row-expander">
-              <button class="btn-row-expander">⭕</button>
-            </td>
-            <td>4</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet.</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
-            <td class="is-overflow">Dato</td>
-            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
-            <td class="is-overflow">
-              <button>💠</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="td-row-expander">
-              <button class="btn-row-expander">⭕</button>
-            </td>
-            <td>5</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet.</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, et dicta animi culpa vero ipsam!</td>
-            <td>Dato</td>
-            <td>Dato Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, aspernatur.</td>
-            <td class="is-overflow">Dato</td>
-            <td class="is-overflow">Datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo_datolargo</td>
-            <td class="is-overflow">
-              <button>💠</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div> -->
+      <p class="codepen" data-height="688" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="rNbxZme" data-preview="true" data-editable="true" data-user="ovatlh" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em">
+        <span>See the Pen <a href="https://codepen.io/ovatlh/pen/rNbxZme"> ttable - example - 01</a> by Tavo (<a href="https://codepen.io/ovatlh">@ovatlh</a>) on <a href="https://codepen.io">CodePen</a>.</span>
+      </p>
+    </section>
 
-    <table class="example01 example01-2 example01-3" id="example01"></table>
+    <section>
+      <a class="a-title" href="#ejemplo02">
+        <h2 id="ejemplo02"># Ejemplo base con estilos</h2>
+      </a>
+      <p>Este otro ejemplo, muestra 2 tablas con diferentes estilos</p>
 
-    <button type="button" onclick="fn_refresh_datalist_example01();">example01: refresh dataList</button>
-    <button type="button" onclick="fn_refresh_datalist_nodata_example01();">example01: refresh dataList [no data]</button>
-    <button type="button" onclick="fn_status_loading_example01();">example01: status "loading"</button>
-    <button type="button" onclick="fn_status_title_loading_example01();">example01: status "loading" h1</button>
+      <p class="codepen" data-height="600" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="oNObaom" data-preview="true" data-editable="true" data-user="ovatlh" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em">
+        <span>See the Pen <a href="https://codepen.io/ovatlh/pen/oNObaom"> ttable - example - 02 &amp; 03</a> by Tavo (<a href="https://codepen.io/ovatlh">@ovatlh</a>) on <a href="https://codepen.io">CodePen</a>.</span>
+      </p>
+    </section>
 
-    <table class="example02 example02-2 example02-3" id="example02"></table>
+    <section>
+      <a class="a-title" href="#documentacion">
+        <h1 id="documentacion"># Documentación | Part 1</h1>
+      </a>
 
-    <table class="example03 example03-2 example03-3" id="example03"></table>
+      <section>
+        <a class="a-title" href="#instalacion">
+          <h2 id="instalacion">## Instalación:</h2>
+        </a>
+        <p>Necesitas agregar 2 archivos a tu pagina web para poder utilizar <i>ttable</i></p>
+        <p>CSS: <a href="ttable.css" target="_blank">ttable.css</a></p>
+        <p>JS: <a href="ttable.js" target="_blank">ttable.js</a></p>
+        <p><i>Recomiendo agregarlos antes de tus scripts donde utilices la libreria para evitar problemas de carga y referencias.</i></p>
+      </section>
 
-    <a href="index.css" target="_blank">index: css</a>
-    <a href="index.js" target="_blank">index: js</a>
-    <a href="index.html" target="_blank">index: html</a>
+      <section>
+        <a class="a-title" href="#uso">
+          <h2 id="uso">## Uso:</h2>
+        </a>
+        <p>Para utilizar <i>ttable</i>, se tiene que hacer referencia al objeto global de la libreria, el cual tiene los metodos para su funcionamiento.</p>
 
-    <h4>log</h4>
-    <div id="log"></div>
+        <code>
+          <div>
+            ttable.<i>Metodo();</i> // <- Objeto global con funcionalidad
+          </div>
+        </code>
+      </section>
+
+      <section>
+        <a class="a-title" href="#metodos">
+          <h2 id="metodos">## Metodos:</h2>
+        </a>
+        <ul>
+          <li>
+            <h3>fnInit</h3>
+
+            <section>
+              <p>Este metodo recibe los parametros para inicializar la tabla</p>
+              <p>Parametros:</p>
+              <ul>
+                <li>
+                  <h4>id: string</h4>
+
+                  <section>
+                    <p>Este parametro es el id de la etiqueta &lt;table id="tu-id"/&gt;</p>
+                  </section>
+                </li>
+
+                <li>
+                  <h4>containerClassList: array[string]</h4>
+
+                  <section>
+                    <p>Estas seran las clases extras que quieras agregar en el <i>"contenedor"</i> de la tabla</p>
+                    <p>El contenedor principal de la tabla lleva la clase <i>"t-table-container"</i>, y para agregar selectores separados entre cada contenedor, puedes agregar estas clases con dicho parametro</p>
+                  </section>
+                </li>
+
+                <li>
+                  <h4>icons: object</h4>
+
+                  <section>
+                    <p>La estructura de este objeto es la siguiente:</p>
+                    <pre>
+
+{
+  <strong>expandRow</strong>: "⭕",
+  <strong>closeRow</strong>: "⛔",
+  <strong>expandCol</strong>: "⭕",
+  <strong>closeCol</strong>: "⛔",
+}
+
+</pre>
+                    <p>Aqui se recibe un objeto con los 4 iconos que se mostraran en los botones para expandir y contraer los renglones con las columnas ocultas</p>
+                    <p>Las propiedades <i>"expandRow"</i> y <i>"closeRow"</i>, hacen referencia al contenido de los botones en cada renglon del <i>"tbody"</i> en la tabla</p>
+                    <p>Y <i>"expandCol"</i> y <i>"closeCol"</i>, hacen referencia al contenido del boton en <i>"thead"</i></p>
+                  </section>
+                </li>
+
+                <li>
+                  <h4>dataList: array[object]</h4>
+
+                  <section>
+                    <p>Aqui es donde agregaras tu arreglo de objetos que deseas mostrar en la tabla</p>
+                    <p>Recuerda que puedes acceder a sus propiedades en <i>"columnDefList"</i></p>
+                  </section>
+                </li>
+
+                <li>
+                  <h4>columnDefList: array[object]</h4>
+
+                  <section>
+                    <p>En este parametro se recibe un arreglo con las definiciones para cada columna que tendra la tabla</p>
+                    <p>Estructura de los objetos para definir columnas:</p>
+                    <pre>
+{
+  // Obligatorios
+  <strong>th</strong>: "Columna 01",
+  <strong>tdRender</strong>: function (item, index_row, index_col) {
+    return (index_row + 1) + ": " + item.name + ": " + item.name.length;
+  },
+
+  // Opcionales
+  <strong>width</strong>: "50%",
+  <strong>minWidth</strong>: "20ch",
+  <strong>thClasslist</strong>: ["col-01-th"],
+  <strong>tdClassList</strong>: ["col-01-td"],
+}
+
+                    </pre>
+                  </section>
+                </li>
+
+                <li>
+                  <h4>textNoData: string</h4>
+
+                  <section>
+                    <p>Este es el contenido que se mostrara en el caso que <i>"dataList"</i> no tenga elementos</p>
+                  </section>
+                </li>
+
+                <li>
+                  <h4>statusRowsInBody: number[int]</h4>
+
+                  <section>
+                    <p>Aqui se indica el numero de <i>"renglones"</i> que se utilizaran para mostrar el contenido de los <i>estatus</i></p>
+                  </section>
+                </li>
+              </ul>
+            </section>
+          </li>
+
+          <li>
+            <h3>fnSetStatus</h3>
+
+            <section>
+
+            </section>
+          </li>
+
+          <li>
+            <h3>fnUpdate</h3>
+
+            <section>
+
+            </section>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
   </body>
 </html>
