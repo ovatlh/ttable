@@ -16,10 +16,10 @@
       <a class="a-title" href="#ttable">
         <h1 id="ttable"># ttable - 0.1.0</h1>
       </a>
-      <p>Mini libreria de javascript para crear tablas responsivas.</p>
-      <p>Cuando una columna se sale de la pantalla, esta se agrega en un nuevo renglon al dar clic en boton para expandir columnas ocultas.</p>
+      <p>Mini librería de JavaScript para crear tablas responsivas.</p>
+      <p>Cuando una columna se sale de la pantalla, esta se agrega en un nuevo renglón al dar clic en botón para expandir columnas ocultas.</p>
       <p>Un extra agregado fue, el mostrar un contenido central para mostrar información o lo que se te ocurra.</p>
-      <p>Para los ejemplos se utilizo la api <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a></p>
+      <p>Para los ejemplos se utilizó la API <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a></p>
       <br>
       <p>Intenta cambiar el ancho de esta ventana para ver como se comportan las tablas</p>
     </section>
@@ -28,7 +28,7 @@
       <a class="a-title" href="#ejemplo01">
         <h2 id="ejemplo01"># Ejemplo base</h2>
       </a>
-      <p>En este ejemplo podemos observar la estrucura de la tabla y sus diferentes contenidos.</p>
+      <p>En este ejemplo podemos observar la estructura de la tabla y sus diferentes contenidos.</p>
 
       <p class="codepen" data-height="688" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="rNbxZme" data-preview="true" data-editable="true" data-user="ovatlh" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em">
         <span>See the Pen <a href="https://codepen.io/ovatlh/pen/rNbxZme"> ttable - example - 01</a> by Tavo (<a href="https://codepen.io/ovatlh">@ovatlh</a>) on <a href="https://codepen.io">CodePen</a>.</span>
@@ -39,7 +39,7 @@
       <a class="a-title" href="#ejemplo02">
         <h2 id="ejemplo02"># Ejemplo base con estilos</h2>
       </a>
-      <p>Este otro ejemplo, muestra 2 tablas con diferentes estilos</p>
+      <p>Este otro ejemplo muestra 2 tablas con diferentes estilos</p>
 
       <p class="codepen" data-height="600" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="oNObaom" data-preview="true" data-editable="true" data-user="ovatlh" style="height: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em">
         <span>See the Pen <a href="https://codepen.io/ovatlh/pen/oNObaom"> ttable - example - 02 &amp; 03</a> by Tavo (<a href="https://codepen.io/ovatlh">@ovatlh</a>) on <a href="https://codepen.io">CodePen</a>.</span>
@@ -55,17 +55,17 @@
         <a class="a-title" href="#instalacion">
           <h2 id="instalacion">## Instalación:</h2>
         </a>
-        <p>Necesitas agregar 2 archivos a tu pagina web para poder utilizar <i>ttable</i></p>
+        <p>Necesitas agregar 2 archivos a tu página web para poder utilizar <i>ttable</i></p>
         <p>CSS: <a href="ttable.css" target="_blank">ttable.css</a></p>
         <p>JS: <a href="ttable.js" target="_blank">ttable.js</a></p>
-        <p><i>Recomiendo agregarlos antes de tus scripts donde utilices la libreria para evitar problemas de carga y referencias.</i></p>
+        <p><i>Recomiendo agregarlos antes de tus scripts donde utilices la librería para evitar problemas de carga y referencias.</i></p>
       </section>
 
       <section>
         <a class="a-title" href="#uso">
           <h2 id="uso">## Uso:</h2>
         </a>
-        <p>Para utilizar <i>ttable</i>, se tiene que hacer referencia al objeto global de la libreria, el cual tiene los metodos para su funcionamiento.</p>
+        <p>Para utilizar <i>ttable</i>, se tiene que hacer referencia al objeto global de la librería, el cual tiene los métodos para su funcionamiento.</p>
 
         <code>
           <div>
@@ -83,14 +83,14 @@
             <h3>fnInit</h3>
 
             <section>
-              <p>Este metodo recibe los parametros para inicializar la tabla</p>
+              <p>Este método recibe los parámetros para inicializar la tabla</p>
               <p>Parametros:</p>
               <ul>
                 <li>
                   <h4>id: string</h4>
 
                   <section>
-                    <p>Este parametro es el id de la etiqueta &lt;table id="tu-id"/&gt;</p>
+                    <p>Este parámetro es el ID de la etiqueta &lt;table id="tu-id"/&gt;</p>
                   </section>
                 </li>
 
@@ -98,8 +98,8 @@
                   <h4>containerClassList: array[string]</h4>
 
                   <section>
-                    <p>Estas seran las clases extras que quieras agregar en el <i>"contenedor"</i> de la tabla</p>
-                    <p>El contenedor principal de la tabla lleva la clase <i>"t-table-container"</i>, y para agregar selectores separados entre cada contenedor, puedes agregar estas clases con dicho parametro</p>
+                    <p>Estas serán las clases extras que quieras agregar en el <i>"contenedor"</i> de la tabla</p>
+                    <p>El contenedor principal de la tabla lleva la clase <i>"t-table-container"</i>, y para agregar selectores separados entre cada contenedor, puedes agregar estas clases con dicho parámetro</p>
                   </section>
                 </li>
 
@@ -107,6 +107,7 @@
                   <h4>icons: object</h4>
 
                   <section>
+                    <p>Aquí se recibe un objeto con los 4 iconos que se mostraran en los botones para expandir y contraer los renglones con las columnas ocultas</p>
                     <p>La estructura de este objeto es la siguiente:</p>
                     <pre>
 
@@ -118,9 +119,8 @@
 }
 
 </pre>
-                    <p>Aqui se recibe un objeto con los 4 iconos que se mostraran en los botones para expandir y contraer los renglones con las columnas ocultas</p>
-                    <p>Las propiedades <i>"expandRow"</i> y <i>"closeRow"</i>, hacen referencia al contenido de los botones en cada renglon del <i>"tbody"</i> en la tabla</p>
-                    <p>Y <i>"expandCol"</i> y <i>"closeCol"</i>, hacen referencia al contenido del boton en <i>"thead"</i></p>
+                    <p>Las propiedades <i>"expandRow"</i> y <i>"closeRow"</i>, hacen referencia al contenido de los botones en cada renglón del <i>"tbody"</i> en la tabla</p>
+                    <p>Y <i>"expandCol"</i> y <i>"closeCol"</i>, hacen referencia al contenido del botón en <i>"thead"</i></p>
                   </section>
                 </li>
 
@@ -128,7 +128,7 @@
                   <h4>dataList: array[object]</h4>
 
                   <section>
-                    <p>Aqui es donde agregaras tu arreglo de objetos que deseas mostrar en la tabla</p>
+                    <p>Aquí es donde agregaras tu arreglo de objetos que deseas mostrar en la tabla</p>
                     <p>Recuerda que puedes acceder a sus propiedades en <i>"columnDefList"</i></p>
                   </section>
                 </li>
@@ -137,7 +137,7 @@
                   <h4>columnDefList: array[object]</h4>
 
                   <section>
-                    <p>En este parametro se recibe un arreglo con las definiciones para cada columna que tendra la tabla</p>
+                    <p>En este parámetro se recibe un arreglo con las definiciones para cada columna que tendrá la tabla</p>
                     <p>Estructura de los objetos para definir columnas:</p>
                     <pre>
 {
@@ -162,7 +162,7 @@
                   <h4>textNoData: string</h4>
 
                   <section>
-                    <p>Este es el contenido que se mostrara en el caso que <i>"dataList"</i> no tenga elementos</p>
+                    <p>Este es el contenido que se mostrara en el caso de que <i>"dataList"</i> no tenga elementos</p>
                   </section>
                 </li>
 
@@ -170,7 +170,7 @@
                   <h4>statusRowsInBody: number[int]</h4>
 
                   <section>
-                    <p>Aqui se indica el numero de <i>"renglones"</i> que se utilizaran para mostrar el contenido de los <i>estatus</i></p>
+                    <p>Aquí se indica el número de <i>"renglones"</i> que se utilizaran para mostrar el contenido de los <i>estatus</i></p>
                   </section>
                 </li>
               </ul>
