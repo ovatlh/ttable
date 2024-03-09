@@ -65,3 +65,8 @@ a {
 .a-title {
   color: black;
 }
+
+.a-by {
+  text-align: right;
+  color: black;
+}

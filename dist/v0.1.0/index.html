@@ -69,7 +69,7 @@
 
         <code>
           <div>
-            ttable.<i>Metodo();</i> // <- Objeto global con funcionalidad
+            ttable.<i>Metodo(objeto_con_parametros);</i> // <- Objeto global con funcionalidad
           </div>
         </code>
       </section>
@@ -84,6 +84,25 @@
 
             <section>
               <p>Este método recibe los parámetros para inicializar la tabla</p>
+              <p>Ejemplo de parámetros:</p>
+<pre>
+{
+  <strong>id</strong>: "example03",
+  <strong>containerClassList</strong>: ["example03"],
+  <strong>icons</strong>: {
+    <strong>expandRow</strong>: `&lt;div&gt;${icon_right}&lt;/div&gt;`,
+    <strong>closeRow</strong>: `&lt;div&gt;${icon_down}&lt;/div&gt;`,
+    <strong>expandCol</strong>: `&lt;div&gt;${icon_right}&lt;/div&gt;`,
+    <strong>closeCol</strong>: `&lt;div&gt;${icon_down}&lt;/div&gt;`,
+  },
+  <strong>dataList</strong>: usuarioList,
+  <strong>columnDefList</strong>: columnDefList,
+  <strong>textNoData</strong>: "&lt;h1&gt;Sin información&lt;/h1&gt;",
+  <strong>statusRowsInBody</strong>: 10
+}
+
+</pre>
+
               <p>Parametros:</p>
               <ul>
                 <li>
@@ -195,6 +214,8 @@
         </ul>
       </section>
     </section>
+
+    <a class="a-by" href="https://ovatlh.github.io/" target="_blank">by @ovatlh</a>
 
     <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
   </body>
