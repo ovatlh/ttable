@@ -48,7 +48,7 @@
 
     <section>
       <a class="a-title" href="#documentacion">
-        <h1 id="documentacion"># Documentación | Part 1</h1>
+        <h1 id="documentacion"># Documentación</h1>
       </a>
 
       <section>
@@ -67,9 +67,10 @@
         </a>
         <p>Para utilizar <i>ttable</i>, se tiene que hacer referencia al objeto global de la librería, el cual tiene los métodos para su funcionamiento.</p>
 
+        <p>Objeto global con funcionalidad <i>"ttable"</i></p>
         <code>
           <div>
-            ttable.<i>Metodo(objeto_con_parámetros);</i> // <- Objeto global con funcionalidad
+            ttable.<i>Metodo(objeto_con_parámetros);</i>
           </div>
         </code>
       </section>
@@ -245,23 +246,27 @@
             <section>
               <p>Con este método puedes actualizar la lista de objetos que se muestran en la tabla</p>
               <p>Ejemplo de parámetros:</p>
+              <br>
+              <p>01: Puedes asignar un arreglo vacío y se mostrará el <i>estatus</i> de <i>"textNoData"</i></p>
 <pre>
-
-// 01: Puedes asignar un arreglo vacío y se mostrará el <i>estatus</i> de <i>"textNoData"</i>
 { 
   id: "example03", 
   dataList: []
 }
 
-// 02: Puedes cambiar el numero de renglones que se utilizan para mostrar
-// el <i>estatus</i> de la tabla
+</pre>
+
+              <p>02: Puedes cambiar el numero de renglones que se utilizan para mostrar el <i>estatus</i> de la tabla</p>
+<pre>
 {
   id: "example03",
   statusRowsInBody: 3
 }
 
-// 03: Los objetos del arreglo que se asigna en <i>"dataList"</i> 
-// deben de tener las propiedades que se utilizan de <i>"item"</i> en <i>"tdRender"</i> desde <i>"columnDefList"</i>
+</pre>
+
+              <p>03: Los objetos del arreglo que se asigna en <i>"dataList"</i> deben de tener las propiedades que se utilizan de <i>"item"</i> en <i>"tdRender"</i> desde <i>"columnDefList"</i></p>
+<pre>
 {
   id: "example03",
   dataList: usuarioList,
